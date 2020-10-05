@@ -334,11 +334,8 @@ public interface AttributeSyntax extends Documented {
             "must be a letter, and the last character of a name must be a\n" +
             "letter or a digit.\n");
 
-    AttributeSyntax NIC_HANDLE_SYNTAX = new AttributeSyntaxRegexp(30, Pattern.compile("(?i)^([A-Z]{2,4}([1-9][0-9]{0,5})?(-[A-Z]{2,10})?|AUTO-[1-9][0-9]*([A-Z]{2,4})?)$"), "" +
-            "From 2 to 4 characters optionally followed by up to 6 digits\n" +
-            "optionally followed by a source specification.  The first digit\n" +
-            "must not be \"0\".  Source specification starts with \"-\" followed\n" +
-            "by source name up to 9-character length.\n");
+    AttributeSyntax NIC_HANDLE_SYNTAX = new AttributeSyntaxRegexp(30, Pattern.compile("^[A-Z0-9a-z-]+$"), "" +
+            "Made up of letters, digits, and the character hyphen \"-\"\n");
 
     AttributeSyntax NSERVER_SYNTAX = new AttributeSyntaxParser(new AttributeParser.NServerParser(), "" +
             "Nameserver name as specified in RFC 1034 with or without\n" +

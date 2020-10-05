@@ -847,13 +847,6 @@ public class AttributeSyntaxTest {
 
     @Test
     public void nichandle() throws Exception {
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "aa-");
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "a-");
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "aaaaa-");
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "aaa-a");
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "aa100000-a12345678901234567890a");
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "aa100000-a1234567890123456789a");
-
         verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "aa-aa");
         verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "aa1-aa");
         verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "Aa1-aA");
@@ -865,14 +858,7 @@ public class AttributeSyntaxTest {
         verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "TSFP");
         verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "TsFP");
 
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "aa01-aa");
-
-        verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "auto-1");
-        verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "auto-1aa");
-        verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "AuTo-1");
-        verifySuccess(ObjectType.ROLE, AttributeType.NIC_HDL, "auto-12345678901234567890aaaa");
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "auto-01");
-        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "auto-1234567890123456789012345aa");
+        verifyFailure(ObjectType.ROLE, AttributeType.NIC_HDL, "SDFSD23()@#$");
     }
 
     @Test

@@ -19,12 +19,13 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static net.ripe.db.whois.common.domain.CIString.ciImmutableSet;
 import static net.ripe.db.whois.common.domain.CIString.ciString;
 
 @Immutable
-public final class RpslAttribute {
+public class RpslAttribute {
     private static final int LEADING_CHARS = 16;
     private static final int LEADING_CHARS_SHORTHAND = 5;
 
@@ -74,7 +75,7 @@ public final class RpslAttribute {
         }
         return cleanComment;
     }
-    
+
     /**
      * Return the list of tokens captured by {@link AttributeLexerWrapper} in the attribute instance
      * @see AttributeLexerWrapper#parse(java.io.Reader)
@@ -106,6 +107,22 @@ public final class RpslAttribute {
         }
 
         return cleanValues;
+    }
+
+    public List<String> getValues()
+    {
+        if ( type != null && type.getSyntax().equals( AttributeSyntax.FREE_FORM_SYNTAX ) )
+        {
+            return List.of( getValue().lines()
+                                      .map( String::trim )
+                                      .collect( Collectors.joining( "\n" ) ) );
+        }
+        else
+        {
+            return getCleanValues().stream()
+                                   .map( CIString::toString )
+                                   .collect( Collectors.toList() );
+        }
     }
 
     /**

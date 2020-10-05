@@ -155,7 +155,7 @@ public class ObjectTemplateTest {
                 "language:       [optional]   [multiple]   [ ]\n" +
                 "org:            [optional]   [single]     [inverse key]\n" +
                 "sponsoring-org: [generated]  [single]     [ ]\n" +
-                "admin-c:        [mandatory]  [multiple]   [inverse key]\n" +
+                "admin-c:        [mandatory]  [single]     [inverse key]\n" +
                 "tech-c:         [mandatory]  [multiple]   [inverse key]\n" +
                 "status:         [mandatory]  [single]     [ ]\n" +
                 "remarks:        [optional]   [multiple]   [ ]\n" +
@@ -187,7 +187,7 @@ public class ObjectTemplateTest {
                 "language:       [optional]   [multiple]   [ ]\n" +
                 "org:            [optional]   [single]     [inverse key]\n" +
                 "sponsoring-org: [generated]  [single]     [ ]\n" +
-                "admin-c:        [mandatory]  [multiple]   [inverse key]\n" +
+                "admin-c:        [mandatory]  [single]     [inverse key]\n" +
                 "tech-c:         [mandatory]  [multiple]   [inverse key]\n" +
                 "status:         [mandatory]  [single]     [ ]\n" +
                 "remarks:        [optional]   [multiple]   [ ]\n" +

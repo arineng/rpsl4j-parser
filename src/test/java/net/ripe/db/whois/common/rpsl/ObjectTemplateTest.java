@@ -24,7 +24,6 @@ public class ObjectTemplateTest {
             "remarks:         password: secret\n" +
             "mnt-by:          DEV-MNT\n" +
             "referral-by:     DEV-MNT\n" +
-            "changed:         BECHA@example.net 20101010\n" +
             "created:         2014-04-15T13:15:30Z\n" +
             "last-modified:   2014-04-15T13:15:30Z\n" +
             "source:          DEV";
@@ -57,7 +56,7 @@ public class ObjectTemplateTest {
     public void getMultipleAttributes(){
         final ObjectTemplate template = ObjectTemplate.getTemplate(ObjectType.AS_BLOCK);
         Set<AttributeType> multipleAttributes = template.getMultipleAttributes();
-        assertThat(multipleAttributes.size(), is(6));
+        assertThat(multipleAttributes.size(), is(5));
     }
 
   @Test
@@ -166,7 +165,6 @@ public class ObjectTemplateTest {
                 "mnt-domains:    [optional]   [multiple]   [inverse key]\n" +
                 "mnt-routes:     [optional]   [multiple]   [inverse key]\n" +
                 "mnt-irt:        [optional]   [multiple]   [inverse key]\n" +
-                "changed:        [mandatory]  [multiple]   [ ]\n" +
                 "created:        [generated]  [single]     [ ]\n" +
                 "last-modified:  [generated]  [single]     [ ]\n" +
                 "source:         [mandatory]  [single]     [ ]\n"));
@@ -199,7 +197,6 @@ public class ObjectTemplateTest {
                 "mnt-domains:    [optional]   [multiple]   [inverse key]\n" +
                 "mnt-routes:     [optional]   [multiple]   [inverse key]\n" +
                 "mnt-irt:        [optional]   [multiple]   [inverse key]\n" +
-                "changed:        [mandatory]  [multiple]   [ ]\n" +
                 "created:        [generated]  [single]     [ ]\n" +
                 "last-modified:  [generated]  [single]     [ ]\n" +
                 "source:         [mandatory]  [single]     [ ]\n" +

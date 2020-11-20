@@ -31,13 +31,13 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
 
       - name: Compile
-        run: ./gradlew compileJava compileTestJava
+        run: ./gradlew compileJava compileTestJava -i
 
       - name: Test
-        run: ./gradlew test
+        run: ./gradlew test -i
 
       - name: Publish package
-        run: ./gradlew publish
+        run: ./gradlew publish -i
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

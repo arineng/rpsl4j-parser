@@ -14,7 +14,7 @@ plugins {
 }
 
 group = 'net.arin'
-version = '1.84'
+version = '1.85-SNAPSHOT'
 description = 'rpsl4j parser library'
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11

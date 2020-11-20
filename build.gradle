@@ -108,19 +108,3 @@ task generateParsers {
 }
 
 compileJava.dependsOn generateParsers
-
-task verifyVersion {
-    doFirst {
-        def githubRef = System.getenv("GITHUB_REF")
-
-        if (githubRef == null) {
-            throw new GradleException("GITHUB_REF is not set!")
-        }
-
-        if ("v" + project.version != githubRef) {
-            throw new GradleException("the artifact version and the release version do not match!")
-        }
-    }
-}
-
-publish.dependsOn verifyVersion

@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew compileJava compileTestJava
 
       - name: Test
-        run: ./gradlew compileJava compileTestJava
+        run: ./gradlew test
 
       - name: Publish package
         run: ./gradlew publish

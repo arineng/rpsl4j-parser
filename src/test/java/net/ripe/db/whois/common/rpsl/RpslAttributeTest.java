@@ -153,7 +153,7 @@ public class RpslAttributeTest {
         final RpslAttribute rpslAttribute = new RpslAttribute("source", "");
         rpslAttribute.validateSyntax(ObjectType.INETNUM, objectMessages);
 
-        assertThat(objectMessages.getMessages(rpslAttribute).getAllMessages(), contains(ValidationMessages.syntaxError("blank value")));
+        assertThat(objectMessages.getMessages(rpslAttribute).getAllMessages(), contains(ValidationMessages.syntaxError("")));
     }
 
     @Test

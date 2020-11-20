@@ -237,12 +237,8 @@ public class RpslAttribute {
 
     public void validateSyntax(final ObjectType objectType, final ObjectMessages objectMessages) {
         for (final CIString cleanValue : getCleanValues()) {
-            String string = cleanValue.toString();
-            if (!type.getSyntax().matches(objectType, string)) {
-                if( string.isBlank() ){
-                    string = "blank value";
-                }
-                objectMessages.addMessage(this, ValidationMessages.syntaxError(string));
+            if (!type.getSyntax().matches(objectType, cleanValue.toString())) {
+                objectMessages.addMessage(this, ValidationMessages.syntaxError(cleanValue.toString()));
             }
         }
     }

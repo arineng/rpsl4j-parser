@@ -28,19 +28,19 @@ public final class ValidationMessages {
     }
 
     public static Message syntaxError(final CharSequence value) {
-        return new Message(Messages.Type.ERROR, "Syntax error in %s", value);
+        return new Message(Messages.Type.ERROR, "Syntax error in \"%s\"", value);
     }
 
     public static Message syntaxError(final CharSequence value, final CharSequence reason) {
-        return new Message(Messages.Type.ERROR, "Syntax error in %s (%s)", value, reason);
+        return new Message(Messages.Type.ERROR, "Syntax error in \"%s\" (%s)", value, reason);
     }
 
     public static Message suppliedAttributeReplacedWithGeneratedValue(final AttributeType type) {
-        return new Message(Messages.Type.WARNING, "Supplied attribute '%s' has been replaced with a generated value", type.getName());
+        return new Message(Messages.Type.WARNING, "Supplied attribute \"%s\" has been replaced with a generated value", type.getName());
     }
 
     public static Message attributeValueConverted(final CharSequence original, final CharSequence converted) {
-        return new Message(Messages.Type.INFO, "Value %s converted to %s", original, converted);
+        return new Message(Messages.Type.INFO, "Value \"%s\" converted to \"%s\"", original, converted);
     }
 
     public static Message continuationLinesRemoved() {

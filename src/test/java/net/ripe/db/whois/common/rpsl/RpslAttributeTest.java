@@ -148,6 +148,15 @@ public class RpslAttributeTest {
     }
 
     @Test
+    public void validateSyntax_syntax_error_for_blank_value() {
+        final ObjectMessages objectMessages = new ObjectMessages();
+        final RpslAttribute rpslAttribute = new RpslAttribute("source", "");
+        rpslAttribute.validateSyntax(ObjectType.INETNUM, objectMessages);
+
+        assertThat(objectMessages.getMessages(rpslAttribute).getAllMessages(), contains(ValidationMessages.syntaxError("blank value")));
+    }
+
+    @Test
     public void format_single_line_no_spaces() {
         final RpslAttribute subject = new RpslAttribute("person", "Brian Riddle");
         assertThat(subject.toString(), is("person:         Brian Riddle\n"));

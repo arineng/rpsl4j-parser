@@ -23,7 +23,7 @@ jobs:
         with:
           java-version: 11
 
-      - name: Cache Gradle packages
+      - name: Cache gradle dependencies
         uses: actions/cache@v2
         with:
           path: |
@@ -32,13 +32,13 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Compile
+      - name: Compile java
         run: ./gradlew compileJava compileTestJava -i
 
-      - name: Test
+      - name: Run tests
         run: ./gradlew test -i
 
-      - name: Publish package
+      - name: Publish jars
         run: ./gradlew publish -i
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

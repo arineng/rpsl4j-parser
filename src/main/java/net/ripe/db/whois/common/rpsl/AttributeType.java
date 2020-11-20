@@ -335,8 +335,7 @@ public enum AttributeType implements Documented {
             .doc("Specifies the identifier of a registered mntner object used for authorisation of operations " +
                     "performed with the object that contains this attribute.")
             .syntax(OBJECT_NAME_SYNTAX)
-            .references(ObjectType.MNTNER)
-            .listValue()),
+            .references(ObjectType.MNTNER)),
 
     MNT_DOMAINS(new Builder("mnt-domains", "md")
             .doc("Specifies the identifier of a registered mntner object used for reverse domain authorisation. " +

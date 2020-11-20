@@ -675,10 +675,10 @@ public class AttributeSyntaxTest {
         verifyFailure(ObjectType.IRT, AttributeType.MNT_BY, "A");
         verifyFailure(ObjectType.IRT, AttributeType.MNT_BY, "A1, A");
         verifyFailure(ObjectType.IRT, AttributeType.MNT_BY, "A12345678901234567890123456789012345678901234567890123456789012345678901234567890");
+        verifyFailure(ObjectType.IRT, AttributeType.MNT_BY, "A1, A2");
 
         verifySuccess(ObjectType.IRT, AttributeType.MNT_BY, "ABCDEfghijKLMNOprstuVWXYz0123456789_______________----_________________________0");
         verifySuccess(ObjectType.IRT, AttributeType.MNT_BY, "A1");
-        verifySuccess(ObjectType.IRT, AttributeType.MNT_BY, "A1, A2");
         verifySuccess(ObjectType.IRT, AttributeType.MNT_BY, "FOO-BAR-ZOT");
     }
 

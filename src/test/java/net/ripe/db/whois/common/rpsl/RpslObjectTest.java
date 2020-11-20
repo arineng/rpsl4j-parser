@@ -398,13 +398,13 @@ public class RpslObjectTest {
     @Test
     public void getValuesForAttribute() {
         final RpslObject object = RpslObject.parse("" +
-                "mntner: DEV-MNT\n" +
-                "mnt-by: DEV-MNT5\n" +
-                "mnt-by: DEV-MNT4, DEV-MNT4\n" +
-                "mnt-by: DEV-MNT3, DEV-MNT2\n" +
-                "mnt-by: DEV-MNT1, DEV-MNT2\n");
+                "mntner:  DEV-MNT\n" +
+                "members: DEV-MNT5\n" +
+                "members: DEV-MNT4, DEV-MNT4\n" +
+                "members: DEV-MNT3, DEV-MNT2\n" +
+                "members: DEV-MNT1, DEV-MNT2\n");
 
-        assertThat(convertToString(object.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT5", "DEV-MNT4", "DEV-MNT3", "DEV-MNT2", "DEV-MNT1"));
+        assertThat(convertToString(object.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT5", "DEV-MNT4", "DEV-MNT3", "DEV-MNT2", "DEV-MNT1"));
         assertThat(object.getValuesForAttribute(AttributeType.ADMIN_C), hasSize(0));
     }
 
@@ -478,16 +478,16 @@ public class RpslObjectTest {
     public void continuation_line_with_space() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 " DEV-MNT2,\n" +
                 " DEV-MNT3,\n" +
                 " DEV-MNT4");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "                DEV-MNT2,\n" +
                 "                DEV-MNT3,\n" +
                 "                DEV-MNT4\n"));
@@ -497,16 +497,16 @@ public class RpslObjectTest {
     public void continuation_line_with_space_and_plus_in_value() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   +DEV+MNT1,\n" +
+                "members:   +DEV+MNT1,\n" +
                 " +DEV+MNT2,\n" +
                 " +DEV+MNT3,\n" +
                 " +DEV+MNT4");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("+DEV+MNT1", "+DEV+MNT2", "+DEV+MNT3", "+DEV+MNT4"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("+DEV+MNT1", "+DEV+MNT2", "+DEV+MNT3", "+DEV+MNT4"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         +DEV+MNT1,\n" +
+                "members:        +DEV+MNT1,\n" +
                 "                +DEV+MNT2,\n" +
                 "                +DEV+MNT3,\n" +
                 "                +DEV+MNT4\n"));
@@ -516,16 +516,16 @@ public class RpslObjectTest {
     public void continuation_line_poorly_formatted() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 "                    DEV-MNT2,\n" +
                 "    DEV-MNT3,\n" +
                 "                                   DEV-MNT4");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "                DEV-MNT2,\n" +
                 "                DEV-MNT3,\n" +
                 "                DEV-MNT4\n"));
@@ -535,16 +535,16 @@ public class RpslObjectTest {
     public void continuation_line_with_tab() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 "\tDEV-MNT2,\n" +
                 "\tDEV-MNT3,\n" +
                 "\tDEV-MNT4");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "                DEV-MNT2,\n" +
                 "                DEV-MNT3,\n" +
                 "                DEV-MNT4\n"));
@@ -554,16 +554,16 @@ public class RpslObjectTest {
     public void continuation_line_with_tab_poorly_formatted() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:    DEV-MNT1,\n" +
+                "members:    DEV-MNT1,\n" +
                 "\t                                     \tDEV-MNT2,\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\tDEV-MNT3,\n" +
                 "\tDEV-MNT4");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "                DEV-MNT2,\n" +
                 "                DEV-MNT3,\n" +
                 "                DEV-MNT4\n"));
@@ -573,16 +573,16 @@ public class RpslObjectTest {
     public void continuation_line_with_plus() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 "+DEV-MNT2,\n" +
                 "+DEV-MNT3,\n" +
                 "+DEV-MNT4");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "+               DEV-MNT2,\n" +
                 "+               DEV-MNT3,\n" +
                 "+               DEV-MNT4\n"));
@@ -592,16 +592,16 @@ public class RpslObjectTest {
     public void continuation_line_with_spaces_only() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 "          \n" +
                 "          DEV-MNT2,\n" +
                 "          DEV-MNT3");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "+\n" +
                 "                DEV-MNT2,\n" +
                 "                DEV-MNT3\n"));
@@ -611,16 +611,16 @@ public class RpslObjectTest {
     public void continuation_line_with_plus_in_value() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   +DEV+MNT1,\n" +
+                "members:   +DEV+MNT1,\n" +
                 "++DEV+MNT2,\n" +
                 "+ +DEV+MNT3,\n" +
                 "+  +DEV+MNT4");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("+DEV+MNT1", "+DEV+MNT2", "+DEV+MNT3", "+DEV+MNT4"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("+DEV+MNT1", "+DEV+MNT2", "+DEV+MNT3", "+DEV+MNT4"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         +DEV+MNT1,\n" +
+                "members:        +DEV+MNT1,\n" +
                 "+               +DEV+MNT2,\n" +
                 "+               +DEV+MNT3,\n" +
                 "+               +DEV+MNT4\n"));
@@ -630,16 +630,16 @@ public class RpslObjectTest {
     public void continuation_line_with_plus_poorly_formatted() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 "+            DEV-MNT2,\n" +
                 "+ DEV-MNT3,\n" +
                 "+                                          DEV-MNT4");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3", "DEV-MNT4"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "+               DEV-MNT2,\n" +
                 "+               DEV-MNT3,\n" +
                 "+               DEV-MNT4\n"));
@@ -649,16 +649,16 @@ public class RpslObjectTest {
     public void empty_continuation_line_with_spaces_only() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 "   \n" +
                 "          DEV-MNT2,\n" +
                 "          DEV-MNT3");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "+\n" +
                 "                DEV-MNT2,\n" +
                 "                DEV-MNT3\n"));
@@ -668,16 +668,16 @@ public class RpslObjectTest {
     public void empty_continuation_line_with_tabs_only() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 "\t\t\t\n" +
                 "          DEV-MNT2,\n" +
                 "          DEV-MNT3");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "+\n" +
                 "                DEV-MNT2,\n" +
                 "                DEV-MNT3\n"));
@@ -687,16 +687,16 @@ public class RpslObjectTest {
     public void empty_continuation_line_with_plus_only() {
         final RpslObject subject = RpslObject.parse("" +
                 "mntner: DEV-MNT\n" +
-                "mnt-by:   DEV-MNT1,\n" +
+                "members:   DEV-MNT1,\n" +
                 "+\n" +
                 "          DEV-MNT2,\n" +
                 "          DEV-MNT3");
 
-        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MNT_BY)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3"));
+        assertThat(convertToString(subject.getValuesForAttribute(AttributeType.MEMBERS)), contains("DEV-MNT1", "DEV-MNT2", "DEV-MNT3"));
 
         assertThat(subject.toString(), is("" +
                 "mntner:         DEV-MNT\n" +
-                "mnt-by:         DEV-MNT1,\n" +
+                "members:        DEV-MNT1,\n" +
                 "+\n" +
                 "                DEV-MNT2,\n" +
                 "                DEV-MNT3\n"));

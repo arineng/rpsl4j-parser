@@ -160,7 +160,7 @@ public class ObjectTemplateTest {
                 "status:         [mandatory]  [single]     [ ]\n" +
                 "remarks:        [optional]   [multiple]   [ ]\n" +
                 "notify:         [optional]   [multiple]   [inverse key]\n" +
-                "mnt-by:         [mandatory]  [multiple]   [inverse key]\n" +
+                "mnt-by:         [mandatory]  [single]     [inverse key]\n" +
                 "mnt-lower:      [optional]   [multiple]   [inverse key]\n" +
                 "mnt-domains:    [optional]   [multiple]   [inverse key]\n" +
                 "mnt-routes:     [optional]   [multiple]   [inverse key]\n" +
@@ -192,7 +192,7 @@ public class ObjectTemplateTest {
                 "status:         [mandatory]  [single]     [ ]\n" +
                 "remarks:        [optional]   [multiple]   [ ]\n" +
                 "notify:         [optional]   [multiple]   [inverse key]\n" +
-                "mnt-by:         [mandatory]  [multiple]   [inverse key]\n" +
+                "mnt-by:         [mandatory]  [single]     [inverse key]\n" +
                 "mnt-lower:      [optional]   [multiple]   [inverse key]\n" +
                 "mnt-domains:    [optional]   [multiple]   [inverse key]\n" +
                 "mnt-routes:     [optional]   [multiple]   [inverse key]\n" +

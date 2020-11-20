@@ -96,9 +96,9 @@ public class AttributeLexerWrapperTest {
 		assertEquals("Attributes without lexer should return simple tokenList representation",
 				correctTokenList, attr.getTokenList());
 		
-		attr = new RpslAttribute(AttributeType.MNT_BY, "Person A, Person B");
+		attr = new RpslAttribute(AttributeType.MEMBERS, "Person A, Person B");
 		correctTokenList = Arrays.asList(
-				Pair.of("mnt-by", Arrays.asList("Person A", "Person B")));
+				Pair.of("members", Arrays.asList("Person A", "Person B")));
 		assertEquals("Multivalued attributes without lexer should return simple tokenList representation",
 				correctTokenList, attr.getTokenList());
 	}

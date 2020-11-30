@@ -16,6 +16,7 @@ import net.ripe.db.whois.common.rpsl.attrs.NServer;
 import net.ripe.db.whois.common.rpsl.attrs.SetObject;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -158,11 +159,28 @@ public interface AttributeParser<T> {
     }
 
     final class NameParser implements AttributeParser {
-        final private Pattern NAME = Pattern.compile("(?i)[a-z][a-z0-9_-]{0,78}[a-z0-9]");
-        final private Set<String> reserved = ImmutableSet.of(
+        private static final Pattern NAME = Pattern.compile("(?i)[a-z][a-z0-9_-]{0,78}[a-z0-9]");
+        private static final Set<String> ORIGINAL_RESERVED_WORDS = ImmutableSet.of(
                 "ANY", "AS-ANY", "RS-ANY", "PEERAS", "AND", "OR", "NOT",
                 "ATOMIC", "FROM", "TO", "AT", "ACTION", "ACCEPT", "ANNOUNCE",
                 "EXCEPT", "REFINE", "NETWORKS", "INTO", "INBOUND", "OUTBOUND");
+
+        private final Set<String> reserved;
+
+        public NameParser() {
+            reserved = ORIGINAL_RESERVED_WORDS;
+        }
+
+        public NameParser(String... allowedReservedWords) {
+            Set<String> reserved = new HashSet<>(ORIGINAL_RESERVED_WORDS);
+
+            for ( String allowedReservedWord : allowedReservedWords )
+            {
+                reserved.remove( allowedReservedWord );
+            }
+
+            this.reserved = ImmutableSet.copyOf(reserved);
+        }
 
         @Override
         public String parse(final String s) {

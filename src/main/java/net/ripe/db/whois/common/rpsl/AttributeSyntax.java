@@ -239,7 +239,7 @@ public interface AttributeSyntax extends Documented {
     AttributeSyntax LANGUAGE_CODE_SYNTAX = new AttributeSyntaxRegexp(Pattern.compile("(?i)^[a-z]{2}$"), "" +
             "Valid two-letter ISO 639-1 language code.\n");
 
-    AttributeSyntax MBRS_BY_REF_SYNTAX = new AnySyntax("" +
+    AttributeSyntax MBRS_BY_REF_SYNTAX = new AttributeSyntaxParser(new AttributeParser.NameParser("ANY"), "" +
             "<mntner-name> | ANY\n");
 
     AttributeSyntax MEMBER_OF_SYNTAX = new MemberOfSyntax();

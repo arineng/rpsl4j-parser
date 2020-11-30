@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThat;
 
 public class RpslAttributeTest {
@@ -145,6 +146,24 @@ public class RpslAttributeTest {
         rpslAttribute.validateSyntax(ObjectType.INETNUM, objectMessages);
 
         assertThat(objectMessages.getMessages(rpslAttribute).getAllMessages(), contains(ValidationMessages.syntaxError("auto-dbm@ripe.net")));
+    }
+
+    @Test
+    public void validateSyntax_syntax_error_for_mbrs_by_ref() {
+        final ObjectMessages objectMessages = new ObjectMessages();
+        final RpslAttribute rpslAttribute = new RpslAttribute("mbrs-by-ref", "I AM BAD");
+        rpslAttribute.validateSyntax(ObjectType.AS_SET, objectMessages);
+
+        assertThat(objectMessages.getMessages(rpslAttribute).getAllMessages(), contains(ValidationMessages.syntaxError("I AM BAD")));
+    }
+
+    @Test
+    public void validateSyntax_for_mbrs_by_ref() {
+        final ObjectMessages objectMessages = new ObjectMessages();
+        final RpslAttribute rpslAttribute = new RpslAttribute("mbrs-by-ref", "ANY, MNT-BY-HENLO, ORG");
+        rpslAttribute.validateSyntax(ObjectType.AS_SET, objectMessages);
+
+        assertTrue(objectMessages.getMessages(rpslAttribute).getAllMessages().isEmpty());
     }
 
     @Test

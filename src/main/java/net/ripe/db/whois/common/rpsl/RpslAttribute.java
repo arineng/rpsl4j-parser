@@ -1,7 +1,7 @@
 package net.ripe.db.whois.common.rpsl;
 
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Sets;
+import com.google.common.collect.Lists;
 
 import net.ripe.db.whois.common.domain.CIString;
 import net.ripe.db.whois.common.rpsl.attrs.MntRoutes;
@@ -18,10 +18,9 @@ import java.io.Writer;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import static net.ripe.db.whois.common.domain.CIString.ciImmutableSet;
+import static net.ripe.db.whois.common.domain.CIString.ciImmutableList;
 import static net.ripe.db.whois.common.domain.CIString.ciString;
 
 @Immutable
@@ -35,7 +34,7 @@ public class RpslAttribute {
     private String cleanComment;
 
     private int hash;
-    private Set<CIString> cleanValues;
+    private List<CIString> cleanValues;
 
     public RpslAttribute(final AttributeType attributeType, final CIString value) {
         this(attributeType, value.toString());
@@ -89,7 +88,7 @@ public class RpslAttribute {
     }
 
     public CIString getCleanValue() {
-        final Set<CIString> values = getCleanValues();
+        final List<CIString> values = getCleanValues();
         switch (values.size()) {
             case 0:
                 throw new IllegalStateException("No " + type + ": value found");
@@ -101,7 +100,7 @@ public class RpslAttribute {
     }
 
     // TODO: [AH] should NOT return empty values; however, that behavior breaks validateSyntax() as it also relies on this method, and can't validate list structure if empty values are silently omitted
-    public Set<CIString> getCleanValues() {
+    public List<CIString> getCleanValues() {
         if (cleanValues == null) {
             extractCleanValueAndComment(value);
         }
@@ -131,10 +130,10 @@ public class RpslAttribute {
      * A reference value is the cleaned value. If part of a clean value references another object,
      * the rest of that value is discarded and only the reference is retained.
      */
-    public Set<CIString> getReferenceValues() {
+    public List<CIString> getReferenceValues() {
         if (AttributeType.MNT_ROUTES.equals(type)) {
-            final Set<CIString> values = getCleanValues();
-            final Set<CIString> result = Sets.newLinkedHashSetWithExpectedSize(values.size());
+            final List<CIString> values = getCleanValues();
+            final List<CIString> result = Lists.newArrayListWithExpectedSize( values.size() );
             for (final CIString value : values) {
                 result.add(MntRoutes.parse(value).getMaintainer());
             }
@@ -153,7 +152,7 @@ public class RpslAttribute {
      * @throws IllegalStateException If there is not exactly one reference value.
      */
     public CIString getReferenceValue() {
-        final Set<CIString> values = getReferenceValues();
+        final List<CIString> values = getReferenceValues();
         switch (values.size()) {
             case 0:
                 throw new IllegalStateException("No value found");
@@ -229,9 +228,9 @@ public class RpslAttribute {
         this.cleanComment = commentWritten ? commentValue.toString() : null;
 
         if (type == null) {
-            cleanValues = Collections.singleton(ciString(cleanedValue.toString()));
+            cleanValues = Collections.singletonList(ciString(cleanedValue.toString()));
         } else {
-            cleanValues = ciImmutableSet(type.splitValue(cleanedValue.toString()));
+            cleanValues = CIString.ciImmutableList(type.splitValue(cleanedValue.toString()));
         }
     }
 

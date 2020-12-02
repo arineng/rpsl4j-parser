@@ -405,7 +405,7 @@ public class RpslObjectTest {
                 "members: DEV-MNT1, DEV-MNT2\n");
 
         assertThat(convertToString(object.getValuesForAttribute(AttributeType.MEMBERS)),
-                contains( "DEV-MNT5", "DEV-MNT4", "DEV-MNT3", "DEV-MNT2", "DEV-MNT1", "DEV-MNT2" ));
+                contains( "DEV-MNT5", "DEV-MNT4","DEV-MNT4", "DEV-MNT3", "DEV-MNT2", "DEV-MNT1", "DEV-MNT2" ));
         assertThat(object.getValuesForAttribute(AttributeType.ADMIN_C), hasSize(0));
     }
 

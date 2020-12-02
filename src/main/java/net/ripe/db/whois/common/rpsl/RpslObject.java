@@ -284,8 +284,8 @@ public class RpslObject implements Identifiable, ResponseObject {
         return attributes.get(0).getCleanValue();
     }
 
-    public Set<CIString> getValuesForAttribute(final AttributeType... attributeType) {
-        final Set<CIString> values = Sets.newLinkedHashSet();
+    public List<CIString> getValuesForAttribute(final AttributeType... attributeType) {
+        final List<CIString> values = Lists.newArrayList();
         for (AttributeType attrType : attributeType) {
             final List<RpslAttribute> rpslAttributes = getOrCreateCache().get(attrType);
             if (rpslAttributes != null && !rpslAttributes.isEmpty()) {

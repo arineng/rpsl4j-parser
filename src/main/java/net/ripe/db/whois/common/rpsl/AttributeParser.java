@@ -159,7 +159,7 @@ public interface AttributeParser<T> {
     }
 
     final class NameParser implements AttributeParser {
-        private static final Pattern NAME = Pattern.compile("(?i)[a-z][a-z0-9_-]{0,78}[a-z0-9]");
+        private static final Pattern NAME = Pattern.compile("(?i)[a-z][a-z0-9_-]*[a-z0-9]");
         private static final Set<String> ORIGINAL_RESERVED_WORDS = ImmutableSet.of(
                 "ANY", "AS-ANY", "RS-ANY", "PEERAS", "AND", "OR", "NOT",
                 "ATOMIC", "FROM", "TO", "AT", "ACTION", "ACCEPT", "ANNOUNCE",

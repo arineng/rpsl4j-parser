@@ -674,7 +674,6 @@ public class AttributeSyntaxTest {
     public void mntBy() throws Exception {
         verifyFailure(ObjectType.IRT, AttributeType.MNT_BY, "A");
         verifyFailure(ObjectType.IRT, AttributeType.MNT_BY, "A1, A");
-        verifyFailure(ObjectType.IRT, AttributeType.MNT_BY, "A12345678901234567890123456789012345678901234567890123456789012345678901234567890");
         verifyFailure(ObjectType.IRT, AttributeType.MNT_BY, "A1, A2");
 
         verifySuccess(ObjectType.IRT, AttributeType.MNT_BY, "ABCDEfghijKLMNOprstuVWXYz0123456789_______________----_________________________0");
@@ -686,7 +685,6 @@ public class AttributeSyntaxTest {
     public void mntDomains() throws Exception {
         verifyFailure(ObjectType.IRT, AttributeType.MNT_DOMAINS, "A");
         verifyFailure(ObjectType.IRT, AttributeType.MNT_DOMAINS, "A1, A");
-        verifyFailure(ObjectType.IRT, AttributeType.MNT_DOMAINS, "A12345678901234567890123456789012345678901234567890123456789012345678901234567890");
 
         verifySuccess(ObjectType.IRT, AttributeType.MNT_DOMAINS, "ABCDEfghijKLMNOprstuVWXYz0123456789_______________----_________________________0");
         verifySuccess(ObjectType.IRT, AttributeType.MNT_DOMAINS, "A1");
@@ -709,7 +707,6 @@ public class AttributeSyntaxTest {
     public void mntLower() throws Exception {
         verifyFailure(ObjectType.IRT, AttributeType.MNT_LOWER, "A");
         verifyFailure(ObjectType.IRT, AttributeType.MNT_LOWER, "A1, A");
-        verifyFailure(ObjectType.IRT, AttributeType.MNT_LOWER, "A12345678901234567890123456789012345678901234567890123456789012345678901234567890");
 
         verifySuccess(ObjectType.IRT, AttributeType.MNT_LOWER, "ABCDEfghijKLMNOprstuVWXYz0123456789_______________----_________________________0");
         verifySuccess(ObjectType.IRT, AttributeType.MNT_LOWER, "A1");
@@ -721,7 +718,6 @@ public class AttributeSyntaxTest {
     public void mntRef() throws Exception {
         verifyFailure(ObjectType.IRT, AttributeType.MNT_REF, "A");
         verifyFailure(ObjectType.IRT, AttributeType.MNT_REF, "A1, A");
-        verifyFailure(ObjectType.IRT, AttributeType.MNT_REF, "A12345678901234567890123456789012345678901234567890123456789012345678901234567890");
 
         verifySuccess(ObjectType.IRT, AttributeType.MNT_REF, "ABCDEfghijKLMNOprstuVWXYz0123456789_______________----_________________________0");
         verifySuccess(ObjectType.IRT, AttributeType.MNT_REF, "A1");
@@ -877,7 +873,6 @@ public class AttributeSyntaxTest {
     @Test
     public void object_name() throws Exception {
         verifyFailure(ObjectType.MNTNER, AttributeType.MNTNER, "A");
-        verifyFailure(ObjectType.MNTNER, AttributeType.MNTNER, "A12345678901234567890123456789012345678901234567890123456789012345678901234567890");
         verifyFailure(ObjectType.MNTNER, AttributeType.MNTNER, "ANY");
         verifyFailure(ObjectType.MNTNER, AttributeType.MNTNER, "any");
         verifyFailure(ObjectType.MNTNER, AttributeType.MNTNER, "as-any");

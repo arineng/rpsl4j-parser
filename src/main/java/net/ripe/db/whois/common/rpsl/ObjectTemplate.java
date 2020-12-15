@@ -28,10 +28,7 @@ import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Key.PRIMARY_KEY;
 import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Order;
 import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Order.TEMPLATE_ORDER;
 import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Order.USER_ORDER;
-import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Requirement.DEPRECATED;
-import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Requirement.GENERATED;
-import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Requirement.MANDATORY;
-import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Requirement.OPTIONAL;
+import static net.ripe.db.whois.common.rpsl.AttributeTemplate.Requirement.*;
 import static net.ripe.db.whois.common.rpsl.AttributeType.ABUSE_C;
 import static net.ripe.db.whois.common.rpsl.AttributeType.ABUSE_MAILBOX;
 import static net.ripe.db.whois.common.rpsl.AttributeType.ADDRESS;
@@ -168,7 +165,7 @@ public final class ObjectTemplate implements Comparable<ObjectTemplate> {
                         new AttributeTemplate(MNT_LOWER, OPTIONAL, MULTIPLE, INVERSE_KEY),
                         new AttributeTemplate(CREATED, GENERATED, SINGLE),
                         new AttributeTemplate(LAST_MODIFIED, GENERATED, SINGLE),
-                        new AttributeTemplate(SOURCE, MANDATORY, SINGLE)),
+                        new AttributeTemplate(SOURCE, MANDATORY_SOURCE, SINGLE)),
 
                 new ObjectTemplate(ObjectType.AUT_NUM, 8,
                         new AttributeTemplate(AUT_NUM, MANDATORY, SINGLE, PRIMARY_KEY, LOOKUP_KEY),
@@ -195,7 +192,7 @@ public final class ObjectTemplate implements Comparable<ObjectTemplate> {
                         new AttributeTemplate(MNT_BY, MANDATORY, SINGLE, INVERSE_KEY),
                         new AttributeTemplate(CREATED, GENERATED, SINGLE),
                         new AttributeTemplate(LAST_MODIFIED, GENERATED, SINGLE),
-                        new AttributeTemplate(SOURCE, MANDATORY, SINGLE)),
+                        new AttributeTemplate(SOURCE, MANDATORY_SOURCE, SINGLE)),
 
                 new ObjectTemplate(ObjectType.DOMAIN, 30,
                         new AttributeTemplate(DOMAIN, MANDATORY, SINGLE, PRIMARY_KEY, LOOKUP_KEY),
@@ -465,7 +462,7 @@ public final class ObjectTemplate implements Comparable<ObjectTemplate> {
                         new AttributeTemplate(MNT_LOWER, OPTIONAL, MULTIPLE, INVERSE_KEY),
                         new AttributeTemplate(CREATED, GENERATED, SINGLE),
                         new AttributeTemplate(LAST_MODIFIED, GENERATED, SINGLE),
-                        new AttributeTemplate(SOURCE, MANDATORY, SINGLE)),
+                        new AttributeTemplate(SOURCE, MANDATORY_SOURCE, SINGLE)),
 
                 new ObjectTemplate(ObjectType.ROUTE, 10,
                         new AttributeTemplate(ROUTE, MANDATORY, SINGLE, PRIMARY_KEY, LOOKUP_KEY),
@@ -490,7 +487,7 @@ public final class ObjectTemplate implements Comparable<ObjectTemplate> {
                         new AttributeTemplate(MNT_BY, MANDATORY, SINGLE, INVERSE_KEY),
                         new AttributeTemplate(CREATED, GENERATED, SINGLE),
                         new AttributeTemplate(LAST_MODIFIED, GENERATED, SINGLE),
-                        new AttributeTemplate(SOURCE, MANDATORY, SINGLE)),
+                        new AttributeTemplate(SOURCE, MANDATORY_SOURCE, SINGLE)),
 
                 new ObjectTemplate(ObjectType.ROUTE6, 11,
                         new AttributeTemplate(ROUTE6, MANDATORY, SINGLE, PRIMARY_KEY, LOOKUP_KEY),
@@ -515,7 +512,7 @@ public final class ObjectTemplate implements Comparable<ObjectTemplate> {
                         new AttributeTemplate(MNT_BY, MANDATORY, SINGLE, INVERSE_KEY),
                         new AttributeTemplate(CREATED, GENERATED, SINGLE),
                         new AttributeTemplate(LAST_MODIFIED, GENERATED, SINGLE),
-                        new AttributeTemplate(SOURCE, MANDATORY, SINGLE)),
+                        new AttributeTemplate(SOURCE, MANDATORY_SOURCE, SINGLE)),
 
                 new ObjectTemplate(ObjectType.RTR_SET, 23,
                         new AttributeTemplate(RTR_SET, MANDATORY, SINGLE, PRIMARY_KEY, LOOKUP_KEY),
@@ -771,6 +768,10 @@ public final class ObjectTemplate implements Comparable<ObjectTemplate> {
 
             if (attributeTemplate.getRequirement() == MANDATORY && attributeTypeCount == 0) {
                 objectMessages.addMessage(ValidationMessages.missingMandatoryAttribute(attributeType));
+            }
+
+            if (attributeTemplate.getRequirement() == MANDATORY_SOURCE && attributeTypeCount == 0) {
+                objectMessages.addMessage(ValidationMessages.missingMandatorySourceAttribute() );
             }
 
             if (attributeTemplate.getCardinality() == SINGLE && attributeTypeCount > 1) {

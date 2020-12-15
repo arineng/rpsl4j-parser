@@ -11,6 +11,10 @@ public final class ValidationMessages {
         return new Message(Messages.Type.ERROR, "Mandatory attribute \"%s\" is missing", type.getName());
     }
 
+    public static Message missingMandatorySourceAttribute() {
+        return new Message(Messages.Type.ERROR, "The RPSL payload must specify source: ARIN");
+    }
+
     public static Message missingConditionalRequiredAttribute(final AttributeType type) {
         return new Message(Messages.Type.ERROR, "Missing required \"%s\" attribute", type.getName());
     }

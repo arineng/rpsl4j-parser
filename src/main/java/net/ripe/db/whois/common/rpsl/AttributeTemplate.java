@@ -9,6 +9,7 @@ import java.util.Set;
 public class AttributeTemplate {
     public static enum Requirement {
         MANDATORY("mandatory"),
+        MANDATORY_SOURCE( "mandatory_source"),
         OPTIONAL("optional"),
         GENERATED("generated"),
         DEPRECATED("optional"); // deprecated fields seen as optional from outside perspective

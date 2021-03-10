@@ -713,10 +713,6 @@ public interface AttributeSyntax extends Documented {
                         return true;
                     }
 
-                    if (AS_NUMBER_SYNTAX.matches(objectType, value) || AS_SET_SYNTAX.matches(objectType, value)) {
-                        return true;
-                    }
-
                     if (ADDRESS_PREFIX_RANGE_SYNTAX.matches(objectType, value)) {
                         final AddressPrefixRange apr = AddressPrefixRange.parse(value);
                         if ((apr.getIpInterval() instanceof Ipv4Resource) || (allowIpv6 && apr.getIpInterval() instanceof Ipv6Resource)) {

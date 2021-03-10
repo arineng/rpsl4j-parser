@@ -641,8 +641,8 @@ public class AttributeSyntaxTest {
         verifySuccess(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "RS-SIX-BLOG^16-24");
         verifySuccess(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "172.184.0.0/13, 172.184.0.0/23^24");
         verifySuccess(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "AS13646:RS-TEST");
-        verifySuccess(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "AS13646");
-        verifySuccess(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "AS-COFFEE,AS3333");
+        verifyFailure(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "AS13646");
+        verifyFailure(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "AS-COFFEE,AS3333");
         verifyFailure(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "2a00:10C0::/32");
         verifyFailure(ObjectType.ROUTE_SET, AttributeType.MEMBERS, "FLTR-TESTNET");
 

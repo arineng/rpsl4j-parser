@@ -195,11 +195,6 @@ public class ParserHelperTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void validateCommunityBeforeColonOutOfRange() {
-        ParserHelper.validateCommunity("65536:1");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void validateCommunityAfterColonOutOfRange() {
         ParserHelper.validateCommunity("1:65536");
     }

@@ -230,14 +230,14 @@ public class ParserHelper {
 
     /**
      * Verify a community number.
-     * The definition is (2-octet):(2-octet), only 16-bit AS numbers are allowed.
+     * The definition is (2-octet):(2-octet), 16-bit and 32-bit AS numbers are allowed.
      * @param yytext
      */
     public static void validateCommunity(final String yytext) {
         final int colon = yytext.indexOf(':');
 
         final long from = Long.valueOf(yytext.substring(0, colon));
-        if (from > MAX_16BIT_NUMBER) {
+        if (from > MAX_32BIT_NUMBER) {
             syntaxError("Community number " + yytext + " contains an invalid number");
         }
 
